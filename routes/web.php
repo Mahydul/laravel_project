@@ -14,3 +14,14 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/about',function(){
+    return view('about',[
+        'channel'=>"This is about"
+    ]);
+});
+
+/*Route::prefix('shajalvoltage')->group(function(){
+    Route::get('/about',function(){
+        echo "this is about page";
+    });
+});*/
