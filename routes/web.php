@@ -19,6 +19,26 @@ Route::get('/about',function(){
         'channel'=>"This is about"
     ]);
 });
+Route::get('/contact',function(){
+    return view('about',[
+        'channel'=>"This is contact"
+    ]);
+});
+Route::get('home',function(){
+    echo "This is home page";
+});
+/*Route::group(['middleware'=>['age']],function(){
+    Route::get('/about',function(){
+        return view('about',[
+            'channel'=>"This is about"
+        ]);
+    });
+    Route::get('/contact',function(){
+        return view('about',[
+            'channel'=>"This is contact"
+        ]);
+    });
+});*/
 
 /*Route::prefix('shajalvoltage')->group(function(){
     Route::get('/about',function(){
