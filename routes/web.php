@@ -25,6 +25,8 @@ Route::get('/contact',function(){
 Route::get('home',function(){
     echo "This is home page";
 });
+Route::resource('category', 'CategoriesController');
+//Route::get('/category','CategoriesController@Index');
 /*Route::group(['middleware'=>['age']],function(){
     Route::get('/about',function(){
         return view('about',[
