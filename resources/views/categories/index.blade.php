@@ -1,12 +1,5 @@
 @extends('main.layout')
 @section('content')
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
-        <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
-        <script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>
-        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css" />
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-
     <div class="container">
         <br />
         <h3 align="center">Laravel 5.8 Ajax Crud Tutorial - Delete or Remove Data</h3>
@@ -30,6 +23,7 @@
         <br />
         <br />
     </div>
+
     <div id="formModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -71,7 +65,6 @@
             </div>
         </div>
     </div>
-
     <div id="confirmModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -89,9 +82,11 @@
             </div>
         </div>
     </div>
-
-
-    <script>
+@endsection
+@section('scripts')
+    <script type="text/javascript" src="{{ asset('assets/scripts/category.js') }}"></script>
+    {{--<script type="text/javascript">
+        // your inline script
         $(document).ready(function(){
 
             $('#user_table').DataTable({
@@ -170,7 +165,7 @@
                 if($('#action').val() == "Edit")
                 {
                     $.ajax({
-                        url:"{{ route('ajax-crud.update') }}",
+                        url:"{{ route('categories.update') }}",
                         method:"POST",
                         data:new FormData(this),
                         contentType: false,
@@ -206,7 +201,7 @@
                 var id = $(this).attr('id');
                 $('#form_result').html('');
                 $.ajax({
-                    url:"/ajax-crud/"+id+"/edit",
+                    url:"/categories/"+id+"/edit",
                     dataType:"json",
                     success:function(html){
                         $('#first_name').val(html.data.first_name);
@@ -231,7 +226,7 @@
 
             $('#ok_button').click(function(){
                 $.ajax({
-                    url:"ajax-crud/destroy/"+user_id,
+                    url:"categories/destroy/"+user_id,
                     beforeSend:function(){
                         $('#ok_button').text('Deleting...');
                     },
@@ -246,6 +241,5 @@
             });
 
         });
-    </script>
-
+    </script>--}}
 @endsection
