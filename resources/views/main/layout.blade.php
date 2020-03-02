@@ -556,7 +556,7 @@
                         >
                             <a href="#">
                                 <i class="metismenu-icon pe-7s-diamond"></i>
-                                Elements
+                                Item List
                                 <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                             </a>
                             <ul
@@ -564,9 +564,9 @@
 
                             >
                                 <li>
-                                    <a href="elements-buttons-standard.html">
+                                    <a href="{{url('/create')}}">
                                         <i class="metismenu-icon"></i>
-                                        Buttons
+                                        Create Category
                                     </a>
                                 </li>
                                 <li>
@@ -769,6 +769,7 @@
                             </ul>
                         </div>
                         <div class="app-footer-right">
+                            <input type="hidden" value="{{url('/')}}" id="url" name="url">
                             <ul class="nav">
                                 <li class="nav-item">
                                     <a href="javascript:void(0);" class="nav-link">

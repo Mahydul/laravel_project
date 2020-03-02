@@ -45,20 +45,47 @@ class CategoriesController extends Controller
 
     public function saveData(Request $request)
     {
-
-        //echo "receive data";
-        //$validator = Validator::make();
-        //return response()->json(['message'=>$title],200);
-        $form_data = array(
-            'name' => $request->title,
-            'description' => $request->description,
-            'image' => 'sss.jpg'
+        $rules = array(
+            'title' => 'required',
+            'description' => 'required',
+            'image' => 'required|image|max:2048'
         );
+        $error = Validator::make($request->all(), $rules);
 
-        Category::create($form_data);
+        if ($error->fails()) {
+            return response()->json(['errors' => $error->errors()->all(),'status'=>400]);
+        }
+        if($request->id != 0){
+            $categoryId = $request->id;
+            //write code for update
+            $image = $request->file('image');
 
-        return response()->json(['success' => 'Data Added successfully.']);
+            $new_name = rand() . '.' . $image->getClientOriginalExtension();
 
+            $image->move(public_path('images'), $new_name);
+            $form_data = array(
+                'name' => $request->title,
+                'description' => $request->description,
+                'image' => $new_name
+            );
+            $update_category = Category::find('id',$categoryId);
+            $update_category->name = $request->title;
+            $update_category->description = $request->description;
+            //return response()->json(['success' => 'Data Added successfully.','status'=>200]);
+        }else{
+            $image = $request->file('image');
+
+            $new_name = rand() . '.' . $image->getClientOriginalExtension();
+
+            $image->move(public_path('images'), $new_name);
+            $form_data = array(
+                'name' => $request->title,
+                'description' => $request->description,
+                'image' => $new_name
+            );
+            Category::create($form_data);
+            return response()->json(['success' => 'Data Added successfully.','status'=>200]);
+        }
     }
 
     /**
@@ -70,33 +97,6 @@ class CategoriesController extends Controller
     public function store(Request $request)
     {
         //
-        $rules = array(
-            'first_name' => 'required',
-            'last_name' => 'required',
-            'image' => 'required|image|max:2048'
-        );
-
-        $error = Validator::make($request->all(), $rules);
-
-        if ($error->fails()) {
-            return response()->json(['errors' => $error->errors()->all()]);
-        }
-
-        $image = $request->file('image');
-
-        $new_name = rand() . '.' . $image->getClientOriginalExtension();
-
-        $image->move(public_path('images'), $new_name);
-
-        $form_data = array(
-            'first_name' => $request->first_name,
-            'last_name' => $request->last_name,
-            'image' => $new_name
-        );
-
-        Category::create($form_data);
-
-        return response()->json(['success' => 'Data Added successfully.']);
     }
 
     /**
@@ -128,9 +128,20 @@ class CategoriesController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $id = $request->id;
+        $categoryModel = Category::find($id);
+        if(!empty($categoryModel)){
+            $data = [
+                'status' => 200,
+                'name' => $categoryModel->name,
+                'description' => $categoryModel->description
+            ];
+            return response()->json($data);
+        }else{
+            return response()->json(['status'=>400,'message'=>'Data Not Found']);
+        }
     }
 
     /**

@@ -2,11 +2,23 @@
 @section('content')
     <div class="container">
         <br />
-        <h3 align="center">Laravel 5.8 Ajax Crud Tutorial - Delete or Remove Data</h3>
+        <h3>Create Category</h3>
         <br />
-        <div align="right">
-            <button type="button" name="create_record" id="create_record" class="btn btn-success btn-sm">Create Record</button>
+        <div class="row">
+            <form id="create_category" data-route="{{route('saveCategory')}}">
+                @csrf
+                <label>Title:</label>
+                <input type="text" class="form-control" name="title">
+                <label>Description</label>
+                <input type="text" class="form-control" name="description">
+                <label>Image</label>
+                <input type="file" class="form-control" name="image" id="image" />
+                <input type="hidden" id="category_id" value="0" name="id">
+                <button type="submit" class="mt-1 mb-2 btn btn-success">Save</button>
+            </form>
         </div>
+        <br />
+        <h3>Category List</h3>
         <br />
         <div class="table-responsive">
             <table class="table table-bordered table-striped" id="user_table">

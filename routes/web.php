@@ -28,7 +28,7 @@ Route::get('home',function(){
 Route::get('/create','CategoriesController@create');
 Route::post('/save-category','CategoriesController@saveData')->name('saveCategory');
 Route::resource('categories', 'CategoriesController');
-Route::post('categories/update', 'CategoriesController@update')->name('categories.update');
+Route::get('/update-category', 'CategoriesController@update');
 
 Route::get('categories/destroy/{id}', 'CategoriesController@destroy');
 //Route::get('/category','CategoriesController@Index');
