@@ -7,6 +7,7 @@ use App\Model\Category;
 //use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Support\Facades\Validator;
 
+
 class CategoriesController extends Controller
 {
     /**
@@ -44,9 +45,19 @@ class CategoriesController extends Controller
 
     public function saveData(Request $request)
     {
+
         //echo "receive data";
-        $validator = Validator::make();
-        return response()->json(['message'=>'Data Send success'],200);
+        //$validator = Validator::make();
+        //return response()->json(['message'=>$title],200);
+        $form_data = array(
+            'name' => $request->title,
+            'description' => $request->description,
+            'image' => 'sss.jpg'
+        );
+
+        Category::create($form_data);
+
+        return response()->json(['success' => 'Data Added successfully.']);
 
     }
 
@@ -83,7 +94,7 @@ class CategoriesController extends Controller
             'image' => $new_name
         );
 
-        AjaxCrud::create($form_data);
+        Category::create($form_data);
 
         return response()->json(['success' => 'Data Added successfully.']);
     }

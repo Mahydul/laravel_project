@@ -13,8 +13,8 @@
                 <thead>
                 <tr>
                     <th width="10%">Image</th>
-                    <th width="35%">First Name</th>
-                    <th width="35%">Last Name</th>
+                    <th width="35%">Name</th>
+                    <th width="35%">Description</th>
                     <th width="30%">Action</th>
                 </tr>
                 </thead>

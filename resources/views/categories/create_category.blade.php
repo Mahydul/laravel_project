@@ -6,9 +6,10 @@
         <br />
         <div class="row justify-content-center align-self-center">
             <form id="create_category" data-route="{{route('saveCategory')}}">
-                {{csrf_field()}}
+                @csrf
                 <label>Title:</label>
                 <input type="text" class="form-control" name="title">
+                <input type="text" class="form-control" name="description">
                 <button type="submit">Save</button>
             </form>
         </div>

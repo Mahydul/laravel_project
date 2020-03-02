@@ -17,12 +17,12 @@ $(document).ready(function(){
                 orderable: false
             },
             {
-                data: 'first_name',
-                name: 'first_name'
+                data: 'name',
+                name: 'name'
             },
             {
-                data: 'last_name',
-                name: 'last_name'
+                data: 'description',
+                name: 'description'
             },
             {
                 data: 'action',
@@ -32,7 +32,7 @@ $(document).ready(function(){
         ]
     });
     $('#create_category').submit(function (e) {
-        debugger;
+        //debugger;
         var route = $('#create_category').data('route');
         var form_data = $(this);
         $.ajax({
@@ -40,7 +40,8 @@ $(document).ready(function(){
             url:route,
             data:form_data.serialize(),
             success:function (response) {
-                console.log(response);
+                //console.log(response);
+                window.reload();
             }
         });
         e.preventDefault();
