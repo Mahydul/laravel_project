@@ -74,6 +74,39 @@ $(document).ready(function(){
             },
             dataType:"json",
             success:function (response) {
+                if(response.hasOwnProperty("status")){
+                    if(response['status']==200){
+                        var title = response['name'];
+                        var des = response['description'];
+                        var id = response['id'];
+                        $('#title').val(title);
+                        $('#des').val(des);
+                        $('#category_id').val(id);
+                    }
+                }
+            }
+        });
+    });
+    $(document).on('click', '.delete', function(){
+        var id = $(this).attr('id');
+        $confirm_alert = alert('Are you sure to delete ?');
+
+        $.ajax({
+            type:"GET",
+            url:"/delete",
+            data:{
+                "id":id
+            },
+            dataType:"json",
+            success:function (response) {
+                if(response.hasOwnProperty("status")){
+                    if(response['status']==200) {
+                        alert(response['message']);
+                        $('#user_table').DataTable().ajax.reload();
+                    }else{
+                        alert(response['message']);
+                    }
+                }
             }
         });
     });

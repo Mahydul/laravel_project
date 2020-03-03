@@ -63,15 +63,16 @@ class CategoriesController extends Controller
             $new_name = rand() . '.' . $image->getClientOriginalExtension();
 
             $image->move(public_path('images'), $new_name);
-            $form_data = array(
-                'name' => $request->title,
-                'description' => $request->description,
-                'image' => $new_name
-            );
-            $update_category = Category::find('id',$categoryId);
+            $update_category = Category::find($categoryId);
             $update_category->name = $request->title;
             $update_category->description = $request->description;
-            //return response()->json(['success' => 'Data Added successfully.','status'=>200]);
+            $update_category->image = $new_name;
+            if($update_category->save()){
+                return response()->json(['success' => 'Data Updated successfully.','status'=>200]);
+            }else{
+                return response()->json(['errors' => 'Error in Data Updating.','status'=>500]);
+            }
+
         }else{
             $image = $request->file('image');
 
@@ -135,6 +136,7 @@ class CategoriesController extends Controller
         if(!empty($categoryModel)){
             $data = [
                 'status' => 200,
+                'id'=>$categoryModel->id,
                 'name' => $categoryModel->name,
                 'description' => $categoryModel->description
             ];
@@ -150,8 +152,15 @@ class CategoriesController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
         //
+        $category_id = $request->id;
+        $delete_category=Category::where('id',$category_id)->delete();
+        if($delete_category){
+            return response()->json(['status'=>200,'message'=>'Data Deleted Successfully']);
+        }else{
+            return response()->json(['status'=>400,'message'=>'Error in Data Deleting']);
+        }
     }
 }

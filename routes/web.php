@@ -29,7 +29,7 @@ Route::get('/create','CategoriesController@create');
 Route::post('/save-category','CategoriesController@saveData')->name('saveCategory');
 Route::resource('categories', 'CategoriesController');
 Route::get('/update-category', 'CategoriesController@update');
-
+Route::get('/delete','CategoriesController@destroy');
 Route::get('categories/destroy/{id}', 'CategoriesController@destroy');
 //Route::get('/category','CategoriesController@Index');
 /*Route::group(['middleware'=>['age']],function(){

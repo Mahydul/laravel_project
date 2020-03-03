@@ -8,9 +8,9 @@
             <form id="create_category" data-route="{{route('saveCategory')}}">
                 @csrf
                 <label>Title:</label>
-                <input type="text" class="form-control" name="title">
+                <input type="text" class="form-control" name="title" id="title">
                 <label>Description</label>
-                <input type="text" class="form-control" name="description">
+                <input type="text" class="form-control" name="description" id="des">
                 <label>Image</label>
                 <input type="file" class="form-control" name="image" id="image" />
                 <input type="hidden" id="category_id" value="0" name="id">
