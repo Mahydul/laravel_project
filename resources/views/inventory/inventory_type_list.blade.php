@@ -1,23 +1,48 @@
 @extends('main.layout')
 @section('content')
+    <style>
+
+        /* The Modal (background) */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            padding-top: 100px; /* Location of the box */
+            left: 5%;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+
+        /* Modal Content */
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+
+        /* The Close Button */
+        .close {
+            color: #aaaaaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
     <div class="container">
-        <br />
-        <h3>Create Category</h3>
-        <br />
-        <div class="row">
-            <form id="create_category" data-route="{{route('saveCategory')}}">
-                @csrf
-                <label>Title:</label>
-                <input type="text" class="form-control" name="title" id="title">
-                <label>Description</label>
-                <input type="text" class="form-control" name="description" id="des">
-                <label>Image</label>
-                <input type="file" class="form-control" name="image" id="image" />
-                <input type="hidden" id="category_id" value="0" name="id">
-                <button type="submit" class="mt-1 mb-2 btn btn-success">Save</button>
-            </form>
-        </div>
-        <br />
+
         <h3>Category List</h3>
         <br />
         <div class="table-responsive">
@@ -77,24 +102,42 @@
             </div>
         </div>
     </div>
-    <div id="confirmModal" class="modal fade" role="dialog">
-        <div class="modal-dialog">
+    <h2>Modal Example</h2>
+
+    <!-- Trigger/Open The Modal -->
+    <button id="myBtn">Open Modal</button>
+
+    <!-- The Modal -->
+    <div class="row justify-content-center">
+        <div id="myModal" class="modal">
+
+            <!-- Modal content -->
             <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h2 class="modal-title">Confirmation</h2>
+                <h3>Create Category</h3>
+                <br />
+                <div class="row">
+                    <form id="create_category" data-route="{{route('saveCategory')}}">
+                        @csrf
+                        <label>Title:</label>
+                        <input type="text" class="form-control" name="title" id="title">
+                        <label>Description</label>
+                        <input type="text" class="form-control" name="description" id="des">
+                        <label>Image</label>
+                        <input type="file" class="form-control" name="image" id="image" />
+                        <input type="hidden" id="category_id" value="0" name="id">
+                        <button type="submit" class="mt-1 mb-2 btn btn-success">Save</button>
+                        <button id="close" class="btn btn-success">&times;</button>
+                    </form>
                 </div>
-                <div class="modal-body">
-                    <h4 align="center" style="margin:0;">Are you sure you want to remove this data?</h4>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" name="ok_button" id="ok_button" class="btn btn-danger">OK</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                </div>
+
             </div>
+
         </div>
     </div>
+
+
+
 @endsection
 @section('scripts')
-    <script type="text/javascript" src="{{ asset('assets/scripts/category.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/scripts/inventory_type.js') }}"></script>
 @endsection

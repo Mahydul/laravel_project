@@ -549,7 +549,7 @@
                                 Dashboard Example 1
                             </a>
                         </li>
-                        <li class="app-sidebar__heading">UI Components</li>
+                        <li class="app-sidebar__heading">Inventory</li>
                         <li
 
 

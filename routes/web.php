@@ -31,7 +31,8 @@ Route::resource('categories', 'CategoriesController');
 Route::get('/update-category', 'CategoriesController@update');
 Route::get('/delete','CategoriesController@destroy');
 Route::get('categories/destroy/{id}', 'CategoriesController@destroy');
-//Route::get('/category','CategoriesController@Index');
+Route::get('/inventory-type','InventoryTypeController@index');
+
 /*Route::group(['middleware'=>['age']],function(){
     Route::get('/about',function(){
         return view('about',[
