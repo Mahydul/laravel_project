@@ -51,3 +51,6 @@ Route::get('/inventory-type','InventoryTypeController@index');
         echo "this is about page";
     });
 });*/
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
