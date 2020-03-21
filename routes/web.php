@@ -16,7 +16,7 @@ Route::get('/', function () {
 });
 Route::get('/about',function(){
     return view('about');
-});
+})->name('about');
 Route::get('/contact',function(){
     return view('about',[
         'channel'=>"This is contact"
@@ -51,6 +51,8 @@ Route::get('/inventory-type','InventoryTypeController@index');
         echo "this is about page";
     });
 });*/
+
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
