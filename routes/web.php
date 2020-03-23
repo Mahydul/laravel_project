@@ -34,6 +34,9 @@ Route::get('categories/destroy/{id}', 'CategoriesController@destroy');
 Route::get('/inventory-type','InventoryTypeController@index');
 Route::get('/uom-list','UnitOfMeasurementController@index');
 Route::post('/uom-save','UnitOfMeasurementController@saveData')->name('saveUom');
+Route::get('/uom-update','UnitOfMeasurementController@update');
+Route::get('/uom-delete','UnitOfMeasurementController@delete');
+//uom-delete
 /*Route::group(['middleware'=>['age']],function(){
     Route::get('/about',function(){
         return view('about',[

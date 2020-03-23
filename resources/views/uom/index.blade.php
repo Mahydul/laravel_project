@@ -8,7 +8,7 @@
             <form id="uom" data-route="{{route('saveUom')}}">
                 @csrf
                 <label>Name:</label>
-                <input type="text" class="form-control" name="name" id="title">
+                <input type="text" class="form-control" name="name" id="name">
                 <label>Description</label>
                 <input type="text" class="form-control" name="description" id="des">
                 <input type="hidden" id="uom_id" value="0" name="id">

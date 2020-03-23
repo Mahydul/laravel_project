@@ -23,9 +23,9 @@ $(document).ready(function(){
             }
         ]
     });
-    $('#create_category').submit(function (e) {
+    $('#uom').submit(function (e) {
         //debugger;
-        var route = $('#create_category').data('route');
+        var route = $('#uom').data('route');
         var form_data = $(this);
         $.ajax({
             type:'POST',
@@ -59,7 +59,7 @@ $(document).ready(function(){
         var id = $(this).attr('id');
         $.ajax({
             type:"GET",
-            url:"/update-category",
+            url:"/uom-update",
             data:{
                 "id":id
             },
@@ -67,12 +67,12 @@ $(document).ready(function(){
             success:function (response) {
                 if(response.hasOwnProperty("status")){
                     if(response['status']==200){
-                        var title = response['name'];
+                        var name = response['name'];
                         var des = response['description'];
                         var id = response['id'];
-                        $('#title').val(title);
+                        $('#name').val(name);
                         $('#des').val(des);
-                        $('#category_id').val(id);
+                        $('#uom_id').val(id);
                     }
                 }
             }
@@ -84,7 +84,7 @@ $(document).ready(function(){
 
         $.ajax({
             type:"GET",
-            url:"/delete",
+            url:"/uom-delete",
             data:{
                 "id":id
             },
@@ -93,7 +93,7 @@ $(document).ready(function(){
                 if(response.hasOwnProperty("status")){
                     if(response['status']==200) {
                         alert(response['message']);
-                        $('#user_table').DataTable().ajax.reload();
+                        $('#uom_table').DataTable().ajax.reload();
                     }else{
                         alert(response['message']);
                     }
